@@ -114,3 +114,37 @@ Check true.
 Check true : bool.
 Check (negb true): bool.
 Check negb : bool -> bool.
+
+Inductive rgb : Type :=
+  | red
+  | green
+  | blue.
+
+Inductive color : Type :=
+  | black
+  | white
+  | primary (p : rgb).
+
+Definition monochrome (c : color) : bool :=
+  match c with
+  | black => true
+  | white => true
+  | primary p => false
+  end.
+
+Definition isred (c : color) : bool :=
+  match c with
+  | black => false
+  | white => false
+  | primary red => true
+  | primary _ => false
+  end.
+
+Module Playground.
+  Definition foo : rgb := blue.
+End Playground.
+
+Definition foo : bool := true.
+
+Check Playground.foo : rgb.
+Check foo : bool.
