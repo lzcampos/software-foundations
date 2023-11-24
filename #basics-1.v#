@@ -252,3 +252,31 @@ Fixpoint minus (n m:nat) : nat :=
   end.
 
 End NatPlayground2.
+
+Fixpoint exp (base power : nat) : nat :=
+  match power with
+  | O => S O
+  | S p => mult base (exp base p)
+  end.
+
+Fixpoint factorial (n:nat) : nat :=
+  match n with
+  | 0 => S 0
+  | S n' => mult n (factorial n')
+  end.
+
+  
+Example test_factorial1:          (factorial 3) = 6.
+Proof. simpl. reflexivity.  Qed.
+Example test_factorial2:          (factorial 5) = (mult 10 12).
+Proof. simpl. reflexivity.  Qed.
+
+Compute (factorial 5).
+
+
+
+
+
+
+
+
