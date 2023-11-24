@@ -18,4 +18,7 @@ Definition next_weekday (d:day) : day :=
   | sunday    => monday
   end.
 
-Compute (next_weekday monday).
+(* Compute (next_weekday monday). *)
+
+Compute (next_weekday (next_weekday friday)).
+
