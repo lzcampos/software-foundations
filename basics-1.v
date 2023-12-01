@@ -213,3 +213,33 @@ Fixpoint even (n:nat) : bool :=
   | S O      => false
   | S (S n') => even n'
   end.
+
+Compute (even (2)).
+
+Definition odd (n:nat) : bool :=
+  negb (even n).
+
+Example test_odd1:    odd 1 = true.
+Proof. simpl. reflexivity.  Qed.
+Example test_odd2:    odd 4 = false.
+Proof. simpl. reflexivity.  Qed.
+
+Module NatPlayground2.
+
+Fixpoint plus (n : nat) (m : nat) : nat :=
+  match n with
+  | O => m
+  | S n' => S (plus n' m)
+  end.
+
+Compute (plus 3 2).
+
+
+Fixpoint mult (n m : nat) : nat :=
+  match n with
+  | O => O
+  | S n' => plus m (mult n' m)
+  end.
+
+Example test_mult1: (mult 3 3) = 9.
+Proof. simpl. reflexivity.  Qed.
