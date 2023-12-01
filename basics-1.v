@@ -201,7 +201,15 @@ Definition minustwo (n : nat) : nat :=
 
 (* Compute (pred (S(S(O)))).
 Check (S (S (S (S O)))). *)
-Compute (minustwo (S(4))).
+Compute (minustwo (4)).
 
+Check S        : nat -> nat.
+Check pred     : nat -> nat.
+Check minustwo : nat -> nat.
 
-
+Fixpoint even (n:nat) : bool :=
+  match n with
+  | O        => true
+  | S O      => false
+  | S (S n') => even n'
+  end.
