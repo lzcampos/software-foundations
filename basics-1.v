@@ -319,3 +319,28 @@ Notation "x <=? y" := (leb x y) (at level 70) : nat_scope.
 
 Example test_leb3': (4 <=? 2) = false.
 Proof. simpl. reflexivity.  Qed.
+
+Definition ltb (n m : nat) : bool :=
+  match (eqb n m) with
+  | true => false
+  | false =>
+      match (leb n m) with
+      | true => true
+      | false => false
+      end
+  end.
+  
+Compute (ltb 3 2).
+
+Notation "x <? y" := (ltb x y) (at level 70) : nat_scope.
+
+Example test_ltb1:             (ltb 2 2) = false.
+Proof. simpl. reflexivity.  Qed.
+Example test_ltb2:             (ltb 2 4) = true.
+Proof. simpl. reflexivity.  Qed.
+Example test_ltb3:             (ltb 4 2) = false.
+Proof. simpl. reflexivity.  Qed.
+
+Theorem plus_O_n : forall n : nat, 0 + n = n.
+Proof.
+  intros n. simpl. reflexivity.  Qed.
