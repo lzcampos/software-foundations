@@ -139,3 +139,24 @@ Definition isred (c : color) : bool :=
   | primary red => true
   | primary _ => false
   end.
+
+Module Playground.
+  Definition foo : rgb := blue.
+End Playground.
+
+Definition foo : bool := true.
+
+Check Playground.foo : rgb.
+Check foo : bool.
+
+Module TuplePlayground.
+
+Inductive bit : Type :=
+  | B1
+  | B0.
+
+Inductive nybble : Type :=
+  | bits (b0 b1 b2 b3 : bit).
+
+Check (bits B1 B0 B1 B0)
+  : nybble.
