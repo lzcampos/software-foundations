@@ -344,3 +344,85 @@ Proof. simpl. reflexivity.  Qed.
 Theorem plus_O_n : forall n : nat, 0 + n = n.
 Proof.
   intros n. simpl. reflexivity.  Qed.
+
+Theorem plus_O_n' : forall n : nat, 0 + n = n.
+Proof.
+  intros n. reflexivity. Qed.
+
+Theorem plus_O_n'' : forall n : nat, 0 + n = n.
+Proof.
+  intros m. reflexivity. Qed.
+
+Theorem plus_1_l : forall n:nat, 1 + n = S n.
+Proof.
+  intros n. reflexivity.  Qed.
+
+Theorem mult_0_l : forall n:nat, 0 * n = 0.
+Proof.
+  intros n. reflexivity.  Qed.
+
+Theorem plus_id_example : forall n m:nat,
+  n = m ->
+  n + n = m + m.
+
+Proof.
+  (* move both quantifiers into the context: *)
+  intros n m.
+  (* move the hypothesis into the context: *)
+  intros H.
+  (* rewrite the goal using the hypothesis: *)
+  rewrite -> H.
+  reflexivity.  Qed.
+
+
+Theorem plus_id_exercise : forall n m o : nat,
+  n = m -> m = o -> n + m = m + o.
+Proof.
+  intros n m o.
+  intros -> H.
+  rewrite -> H.
+  reflexivity. Qed.
+
+Check mult_n_O.
+(* ===> forall n : nat, 0 = n * 0 *)
+
+Check mult_n_Sm.
+(* ===> forall n m : nat, n * m + n = n * S m *)
+
+Theorem mult_n_0_m_0 : forall p q : nat,
+  (p * 0) + (q * 0) = 0.
+Proof.
+  intros p q.
+  rewrite <- mult_n_O.
+  rewrite <- mult_n_O.
+  reflexivity. Qed.
+
+Theorem mult_n_1 : forall p : nat,
+  p * 1 = p.
+Proof.
+  intros p.
+  rewrite <- mult_n_Sm.
+  rewrite <- mult_n_O.
+  reflexivity. Qed.
+
+Theorem plus_1_neq_0_firsttry : forall n : nat,
+  (n + 1) =? 0 = false.
+Proof.
+  intros n.
+  simpl.  (* does nothing! *)
+Abort.
+
+Theorem plus_1_neq_0 : forall n : nat,
+  (n + 1) =? 0 = false.
+Proof.
+  intros n. destruct n as [| n'] eqn:E.
+  - reflexivity.
+  - reflexivity.   Qed.
+
+Theorem negb_involutive : forall b : bool,
+  negb (negb b) = b.
+Proof.
+  intros b. destruct b eqn:E.
+  - reflexivity.
+  - reflexivity.  Qed.
+
