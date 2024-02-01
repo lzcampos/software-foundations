@@ -426,3 +426,69 @@ Proof.
   - reflexivity.
   - reflexivity.  Qed.
 
+Theorem andb_commutative : forall b c, andb b c = andb c b.
+Proof.
+  intros b c. destruct b eqn:Eb.
+  - destruct c eqn:Ec.
+    + reflexivity.
+    + reflexivity.
+  - destruct c eqn:Ec.
+    + reflexivity.
+    + reflexivity.
+Qed.
+
+Theorem andb_commutative' : forall b c, andb b c = andb c b.
+Proof.
+  intros b c. destruct b eqn:Eb.
+  { destruct c eqn:Ec.
+    { reflexivity. }
+    { reflexivity. } }
+  { destruct c eqn:Ec.
+    { reflexivity. }
+    { reflexivity. } }
+Qed.
+
+Theorem andb3_exchange :
+  forall b c d, andb (andb b c) d = andb (andb b d) c.
+Proof.
+  intros b c d. destruct b eqn:Eb.
+  - destruct c eqn:Ec.
+    { destruct d eqn:Ed.
+      - reflexivity.
+      - reflexivity. }
+    { destruct d eqn:Ed.
+      - reflexivity.
+      - reflexivity. }
+  - destruct c eqn:Ec.
+    { destruct d eqn:Ed.
+      - reflexivity.
+      - reflexivity. }
+    { destruct d eqn:Ed.
+      - reflexivity.
+      - reflexivity. }
+Qed.
+
+Theorem andb_true_elim2 :
+  forall b c : bool,
+  andb b c = true -> c = true.
+Proof.
+  intros b c.
+  intros H.
+  destruct b.
+  (* CASE: b = true *)
+    destruct c.
+    (* CASE: c = true *)
+      rewrite <- H.
+      reflexivity.
+    (* CASE: c = false *)
+      rewrite <- H.
+      reflexivity.
+  (* CASE: b = false *)
+    destruct c.
+    (* CASE: c = true *)
+      rewrite <- H.
+      reflexivity.
+    (* CASE: c = false *)
+      rewrite <- H.
+      reflexivity.
+
