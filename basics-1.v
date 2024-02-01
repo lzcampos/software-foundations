@@ -490,5 +490,30 @@ Proof.
       reflexivity.
     (* CASE: c = false *)
       rewrite <- H.
-      reflexivity.
+      reflexivity. Qed.
 
+
+Theorem plus_1_neq_0' : forall n : nat,
+  (n + 1) =? 0 = false.
+Proof.
+  intros [|n].
+  - reflexivity.
+  - reflexivity.  Qed.
+
+Theorem andb_commutative'' :
+  forall b c, andb b c = andb c b.
+Proof.
+  intros [] [].
+  - reflexivity.
+  - reflexivity.
+  - reflexivity.
+  - reflexivity.
+Qed.
+
+Theorem zero_nbeq_plus_1 : forall n : nat,
+  0 =? (n + 1) = false.
+Proof.
+  intros [].
+  - reflexivity.
+  - reflexivity.
+Qed.
